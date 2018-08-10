@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app = "RoundHelper">
+<head>
+	<title>Ronda de mate helper</title>
+	<script src="https://code.angularjs.org/1.7.2/angular.min.js"></script>
+	<script src="app.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
+<body ng-controller="Controller" >
+	<h1 class = "titulo">Ronda de mate helper</h1><br>
+	<input type="text" placeholder="Buscar..." ng-model="filtro.name"> <button ng-click = clear() class="boton2" ng-init="hover2=false" class="boton2" ng-mouseenter="hover2=true" ng-mouseleave="hover2=false" ng-class="{'boton2-hover': hover2}"> Limpiar</button>
+	<br><br>
+	<strong>Todos</strong>
+	<ul class = "no-list  ">
+		<li ng-repeat="p in people | filter: {name: filtro.name}">
+			<i ng-click="addPerson(p)" class="fas fa-plus-square"></i>  {{p.name}}
+		</li>
+	</ul>
+	<strong>En la ronda</strong>
+	<ul class = "no-list">
+		<li ng-repeat="p in in | filter: {name: filtro.name}">
+			<i ng-click="removePerson(p)" class="fas fa-minus-square"></i>  {{p.name}}
+		</li>
+	</ul>
+
+	<h1 ng-class = "r-border">Le toca a: <strong>{{in[index].name}}</strong> </h1>
+	<button ng-click = "next()" ng-init="hover1=false" class="boton1 " ng-mouseenter="hover1=true" ng-mouseleave="hover1=false" ng-class="{'boton1-hover': hover1}">Siguiente</button>
+</body>
+</html>
